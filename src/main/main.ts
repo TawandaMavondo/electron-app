@@ -42,7 +42,6 @@ const isDebug =
 if (isDebug) {
   require('electron-debug')();
 }
-
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
@@ -73,6 +72,9 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
+    minWidth:1024,
+    minHeight:728,
+    title: 'Basic Material UI Dashboard',
     icon: getAssetPath('icon.png'),
     webPreferences: {
       sandbox: false,

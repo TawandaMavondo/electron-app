@@ -1,13 +1,15 @@
+import { ThemeProvider } from '@mui/material';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import theme from './theme/theme';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
-root.render(<App />);
+const Wrapper = () => (
+  <ThemeProvider theme={theme}>
+    <App />
+  </ThemeProvider>
+);
+root.render(<Wrapper />);
 
-// calling IPC exposed from preload script
-window.electron.ipcRenderer.once('ipc-example', (arg) => {
-  // eslint-disable-next-line no-console
-  console.log(arg);
-});
-window.electron.ipcRenderer.sendMessage('ipc-example', ['ping']);
+
