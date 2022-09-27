@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'ipc-example';
+export type Channels = 'ipc-example' | 'ipc-store';
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
@@ -16,6 +16,17 @@ contextBridge.exposeInMainWorld('electron', {
     },
     once(channel: Channels, func: (...args: unknown[]) => void) {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
+    },
+  },
+  store: {
+    get(id: string) {
+      return ipcRenderer.sendSync('electron-store-get', id);
+    },
+    set(property: string, value: any) {
+      ipcRenderer.send('electron-store-set', property, value);
+    },
+    delete(id: string) {
+      return ipcRenderer.sendSync('electron-store-delete', id);
     },
   },
 });

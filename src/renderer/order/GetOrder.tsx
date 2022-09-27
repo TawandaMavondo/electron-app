@@ -1,9 +1,10 @@
 import {
+  Alert,
   Box,
-  Button,
   Card,
   Container,
   MenuItem,
+  Snackbar,
   TextField,
   Toolbar,
   // withStyles
@@ -19,7 +20,7 @@ import React from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
+import moment from 'moment';
 const places = [
   {
     value: 'Tupelo, MS',
@@ -55,8 +56,31 @@ const GetOrders: React.FC = (props: any) => {
   const [place, setPlace] = React.useState('Gary, IN');
   const [name, setName] = React.useState('');
   const [amount, setAmount] = React.useState('');
-  const [date, setDate] = React.useState(new Date());
+  const [date, setDate] = React.useState<any>();
+  const [loading, setLoading] = React.useState(false);
+  const [done, setDone] = React.useState(false);
 
+  const handleSubmit: any = () => {
+    setLoading(true);
+    console.log(moment(date).toDate());
+
+    let payload = {
+      id: place + name + amount + moment(date).millisecond(),
+      shipTo: place,
+      name,
+      amount,
+      date: moment(date).format('DD MMMM, YYYY'),
+      paymentMethod: 'VISA ⠀•••• 5919',
+    };
+
+    const orders = window.electron.store.get('orders') || [];
+    orders.push(payload);
+    window.electron.store.set('orders', orders);
+    console.log(window.electron.store.get('orders'));
+    // call ipc to main process
+    setLoading(false);
+    setDone(true);
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box
@@ -104,21 +128,31 @@ const GetOrders: React.FC = (props: any) => {
                 label="Sales Amount"
               ></TextField>
               <DateTimePicker
-                label="Date&Time picker"
                 value={date}
-                onChange={() => null}
+                onChange={(date) => {
+                  if (date) setDate(date);
+                }}
                 renderInput={(params) => <TextField {...params} />}
               />
               <Toolbar />
-              <Button variant="contained">Add New Order </Button>
               <LoadingButton
-                loading
+                sx={{ background: 'purple' }}
+                loading={loading}
+                style={{ width: '150px' }}
+                variant="contained"
                 loadingPosition="start"
                 startIcon={<SaveIcon />}
-                variant="outlined"
+                onClick={handleSubmit}
               >
                 Save
               </LoadingButton>
+              <Snackbar
+                open={done}
+                autoHideDuration={3000}
+                onClose={() => setDone(false)}
+              >
+                <Alert severity="success">New Order is Saved</Alert>
+              </Snackbar>
             </FormGroup>
           </Card>
         </Container>

@@ -14,6 +14,21 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+const Store = require('electron-store');
+
+const store = new Store();
+// IPC listener
+ipcMain.on('electron-store-get', async (event, val) => {
+  event.returnValue = store.get(val);
+});
+
+ipcMain.on('electron-store-delete', async (event, val) => {
+  event.returnValue = store.delete(val);
+});
+
+ipcMain.on('electron-store-set', async (event, key, val) => {
+  store.set(key, val);
+});
 
 class AppUpdater {
   constructor() {
@@ -72,8 +87,8 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
-    minWidth:1024,
-    minHeight:728,
+    minWidth: 1024,
+    minHeight: 728,
     title: 'Basic Material UI Dashboard',
     icon: getAssetPath('icon.png'),
     webPreferences: {

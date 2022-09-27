@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Modal, Box, Typography, Button, CssBaseline } from '@mui/material';
+import { Modal, Box, Button, CssBaseline } from '@mui/material';
 
 // Generate Order Data
 function createData(
@@ -17,6 +17,15 @@ function createData(
   amount: number
 ) {
   return { id, date, name, shipTo, paymentMethod, amount };
+}
+
+interface I {
+  id: number;
+  date: string;
+  name: string;
+  shipTo: string;
+  paymentMethod: string;
+  amount: number;
 }
 
 const rows = [
@@ -72,15 +81,24 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-function preventDefault(event: React.MouseEvent) {
-  event.preventDefault();
-}
 
 export default function Orders() {
   const [openModal, setOpenModal] = React.useState(false);
+  const [orders, setOrders] = React.useState<I[]>([]);
   const handleOpen = () => {
     setOpenModal(true);
   };
+
+  React.useEffect(() => {
+    const orders = window.electron.store.get('orders');
+    if (orders) {
+      console.log(orders)
+      setOrders(window.electron.store.get('orders'));
+    } else {
+      window.electron.store.set('orders', rows);
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <h1>Recent Orders</h1>
@@ -95,7 +113,7 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {orders.map((row: I) => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
@@ -127,7 +145,7 @@ export default function Orders() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {orders.map((row: I) => (
                 <TableRow key={row.id}>
                   <TableCell>{row.date}</TableCell>
                   <TableCell>{row.name}</TableCell>
