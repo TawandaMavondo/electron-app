@@ -27,6 +27,7 @@ import {
 
 import DashboardMain from './dashboard/DashboardMain';
 import GetOrders from './order/GetOrder';
+import UserPage from './user/User';
 
 const drawerWidth = 240;
 interface AppBarProps extends MuiAppBarProps {
@@ -42,7 +43,7 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
-  background: "purple",
+  background: 'purple',
 
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
@@ -226,6 +227,7 @@ const Home: React.FC = () => {
         </Drawer>
         {currentPage === Page.Dashboard && <DashboardMain />}
         {currentPage === Page.Orders && <GetOrders />}
+        {currentPage === Page.Users && <UserPage />}
       </Box>
     </>
   );

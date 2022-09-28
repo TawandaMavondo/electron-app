@@ -55,7 +55,7 @@ const styles = () => ({
 const GetOrders: React.FC = (props: any) => {
   const [place, setPlace] = React.useState('Gary, IN');
   const [name, setName] = React.useState('');
-  const [amount, setAmount] = React.useState('');
+  const [amount, setAmount] = React.useState<number>(0);
   const [date, setDate] = React.useState<any>();
   const [loading, setLoading] = React.useState(false);
   const [done, setDone] = React.useState(false);
@@ -68,7 +68,7 @@ const GetOrders: React.FC = (props: any) => {
       id: place + name + amount + moment(date).millisecond(),
       shipTo: place,
       name,
-      amount,
+      amount: amount.toFixed(2),
       date: moment(date).format('DD MMMM, YYYY'),
       paymentMethod: 'VISA ⠀•••• 5919',
     };
@@ -124,7 +124,8 @@ const GetOrders: React.FC = (props: any) => {
                 className={props.classes.textField}
                 type={'number'}
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                InputProps={{ inputProps: { min: 0 } }}
+                onChange={(e) => setAmount(Number(e.target.value))}
                 label="Sales Amount"
               ></TextField>
               <DateTimePicker
