@@ -197,7 +197,7 @@
   },
   "build": {
     "productName": "Uncommon.org",
-    "appId": "org.erb.ElectronReact",
+    "appId": "org.uncommon.app",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
