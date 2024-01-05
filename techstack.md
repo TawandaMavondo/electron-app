@@ -58,7 +58,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [TawandaMavondo/electron-app](https://github.com/TawandaMavondo/electron-app)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|72<br/>Tools used|12/09/23 <br/>Report generated|
+|75<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -267,9 +267,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (49)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (52)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (49)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (52)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -284,6 +284,7 @@ Full tech stack [here](/techstack.md)
 |[@types/react-test-renderer](https://www.npmjs.com/@types/react-test-renderer)|v18.0.0|09/23/22|tawandamavondo |MIT|N/A|
 |[@typescript-eslint/eslint-plugin](https://www.npmjs.com/@typescript-eslint/eslint-plugin)|v5.33.1|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[@typescript-eslint/parser](https://www.npmjs.com/@typescript-eslint/parser)|v5.33.1|09/22/22|Tawanda Mavondo |BSD-2-Clause|N/A|
+|[chalk](https://www.npmjs.com/chalk)|v2.4.2|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[concurrently](https://www.npmjs.com/concurrently)|v7.3.0|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[core-js](https://www.npmjs.com/core-js)|v3.24.1|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[cross-env](https://www.npmjs.com/cross-env)|v7.0.3|09/22/22|Tawanda Mavondo |MIT|N/A|
@@ -303,8 +304,10 @@ Full tech stack [here](/techstack.md)
 |[eslint-plugin-react-hooks](https://www.npmjs.com/eslint-plugin-react-hooks)|v4.6.0|09/23/22|tawandamavondo |MIT|N/A|
 |[file-loader](https://www.npmjs.com/file-loader)|v6.2.0|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[html-webpack-plugin](https://www.npmjs.com/html-webpack-plugin)|v5.5.0|09/22/22|Tawanda Mavondo |MIT|N/A|
+|[husky](https://www.npmjs.com/husky)|v8.0.1|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[identity-obj-proxy](https://www.npmjs.com/identity-obj-proxy)|v3.0.0|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[jest-environment-jsdom](https://www.npmjs.com/jest-environment-jsdom)|v28.1.3|09/27/22|tawandamavondo |MIT|N/A|
+|[lint-staged](https://www.npmjs.com/lint-staged)|v13.0.3|09/22/22|Tawanda Mavondo |MIT|N/A|
 |[mini-css-extract-plugin](https://www.npmjs.com/mini-css-extract-plugin)|v2.6.1|09/23/22|tawandamavondo |MIT|N/A|
 |[moment](https://www.npmjs.com/moment)|v2.29.4|09/27/22|tawandamavondo |MIT|N/A|
 |[react-dom](https://www.npmjs.com/react-dom)|v18.2.0|09/23/22|tawandamavondo |MIT|N/A|
